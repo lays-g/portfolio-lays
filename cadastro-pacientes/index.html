@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro para Processo Seletivo</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background-color: #eee8f7;
+        }
+
+        .formulario {
+            width: 500px;
+            max-width: 100%;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #673ab7;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #673ab7;
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+
+        .grupo {
+            margin-bottom: 25px;
+            padding: 18px;
+            background-color: #f8f5fc;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #673ab7;
+        }
+
+        .observacao {
+            display: block;
+            margin-top: 7px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 7px;
+            background-color: #673ab7;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #512da8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="formulario">
+
+        <h1>Cadastro para Processo Seletivo</h1>
+
+        <form id="formCadastro">
+
+            <div class="grupo">
+
+                <h2>Dados Pessoais</h2>
+
+                <label for="nomeCompleto">Nome completo:</label>
+
+                <input
+                    type="text"
+                    id="nomeCompleto"
+                    placeholder="Digite seu nome completo"
+                >
+
+                <label for="email">E-mail:</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                >
+
+            </div>
+
+            <div class="grupo">
+
+                <h2>Formação Acadêmica</h2>
+
+                <label for="escolaridade">Escolaridade:</label>
+
+                <select id="escolaridade">
+
+                    <option value="">Selecione sua escolaridade</option>
+
+                    <option value="Ensino Fundamental Incompleto">
+                        Ensino Fundamental Incompleto
+                    </option>
+
+                    <option value="Ensino Fundamental Completo">
+                        Ensino Fundamental Completo
+                    </option>
+
+                    <option value="Ensino Médio Incompleto">
+                        Ensino Médio Incompleto
+                    </option>
+
+                    <option value="Ensino Médio Completo">
+                        Ensino Médio Completo
+                    </option>
+
+                    <option value="Ensino Superior Incompleto">
+                        Ensino Superior Incompleto
+                    </option>
+
+                    <option value="Ensino Superior Completo">
+                        Ensino Superior Completo
+                    </option>
+
+                    <option value="Pós-graduação">
+                        Pós-graduação
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="grupo">
+
+                <h2>Currículo</h2>
+
+                <label for="curriculo">Enviar currículo:</label>
+
+                <input
+                    type="file"
+                    id="curriculo"
+                    accept=".pdf,.docx,.png"
+                >
+
+                <span class="observacao">
+                    Formatos aceitos: PDF, DOCX e PNG.
+                </span>
+
+            </div>
+
+            <button type="submit">
+                Salvar Dados
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+        const formulario = document.getElementById("formCadastro");
+
+        formulario.addEventListener("submit", function(evento) {
+
+            evento.preventDefault();
+
+            const nome = document
+                .getElementById("nomeCompleto")
+                .value
+                .trim();
+
+            const email = document
+                .getElementById("email")
+                .value
+                .trim()
+                .toLowerCase();
+
+            const escolaridade = document
+                .getElementById("escolaridade")
+                .value;
+
+            const curriculo = document
+                .getElementById("curriculo")
+                .files[0];
+
+            // Verificação do nome
+
+            if (nome === "") {
+                alert("Por favor, informe seu nome completo.");
+                return;
+            }
+
+            if (nome.length < 3) {
+                alert("O nome precisa ter pelo menos 3 caracteres.");
+                return;
+            }
+
+            // Verificação do e-mail
+
+            const dominiosAceitos = [
+                "gmail.com",
+                "hotmail.com",
+                "outlook.com",
+                "yahoo.com"
+            ];
+
+            const emailValido = dominiosAceitos.some(function(dominio) {
+                return email.endsWith("@" + dominio);
+            });
+
+            if (!emailValido) {
+                alert(
+                    "Informe um e-mail válido utilizando Gmail, Hotmail, Outlook ou Yahoo."
+                );
+                return;
+            }
+
+            // Verificação da escolaridade
+
+            if (escolaridade === "") {
+                alert("Selecione sua escolaridade.");
+                return;
+            }
+
+            // Verificação do currículo
+
+            if (!curriculo) {
+                alert("Selecione seu currículo antes de continuar.");
+                return;
+            }
+
+            const nomeDoArquivo = curriculo.name.toLowerCase();
+
+            const formatosPermitidos = [
+                ".pdf",
+                ".docx",
+                ".png"
+            ];
+
+            const formatoValido = formatosPermitidos.some(function(formato) {
+                return nomeDoArquivo.endsWith(formato);
+            });
+
+            if (!formatoValido) {
+                alert(
+                    "Arquivo inválido. Envie o currículo em PDF, DOCX ou PNG."
+                );
+                return;
+            }
+
+            // Cadastro concluído
+
+            alert(
+                "Cadastro realizado com sucesso!\n\n" +
+                "Nome: " + nome + "\n" +
+                "E-mail: " + email + "\n" +
+                "Escolaridade: " + escolaridade + "\n" +
+                "Currículo: " + curriculo.name
+            );
+
+        });
+    </script>
+
+</body>
+
+</html>
