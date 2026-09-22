@@ -43,7 +43,6 @@ window.addEventListener("scroll", () => {
 });
 
 
-
 /* =====================================
    BOTÃO "VER MEUS PROJETOS"
 ===================================== */
@@ -69,27 +68,23 @@ if (projectButton) {
 }
 
 
-
 /* =====================================
-   LINKS DOS PROJETOS
+   PROJETOS EM DESENVOLVIMENTO
 ===================================== */
 
-const projectLinks = document.querySelectorAll(".project-link");
+const comingSoonLinks = document.querySelectorAll(".coming-soon");
 
-projectLinks.forEach(link => {
+comingSoonLinks.forEach(link => {
 
-    link.addEventListener("click", (event) => {
+    link.addEventListener("click", event => {
 
         event.preventDefault();
 
-        alert(
-            "Esse projeto ainda está em desenvolvimento. 💗"
-        );
+        alert("Em breve o projeto estará disponível!");
 
     });
 
 });
-
 
 
 /* =====================================
@@ -100,25 +95,13 @@ const btnCV = document.querySelector("#btnCV");
 
 if (btnCV) {
 
-    btnCV.addEventListener("click", (event) => {
+    btnCV.addEventListener("click", () => {
 
-        /*
-        Não usamos preventDefault() aqui.
-
-        O próprio HTML possui:
-        href="curriculo.pdf"
-
-        Portanto, o navegador abrirá
-        o currículo normalmente.
-        */
-
-        // Não fazer nada.
-        // O link seguirá normalmente.
+        // O link do currículo seguirá normalmente.
 
     });
 
 }
-
 
 
 /* =====================================
@@ -129,10 +112,8 @@ const animatedElements = document.querySelectorAll(
     ".about-text, .skills-card, .project-card, .contact-box"
 );
 
-
 const observer = new IntersectionObserver(
-
-    (entries) => {
+    entries => {
 
         entries.forEach(entry => {
 
@@ -145,11 +126,9 @@ const observer = new IntersectionObserver(
         });
 
     },
-
     {
         threshold: 0.15
     }
-
 );
 
 
