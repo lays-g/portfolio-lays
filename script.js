@@ -10,7 +10,7 @@
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav a");
 
-window.addEventListener("scroll", () => {
+function updateActiveMenu() {
 
     let currentSection = "";
 
@@ -40,7 +40,9 @@ window.addEventListener("scroll", () => {
 
     });
 
-});
+}
+
+window.addEventListener("scroll", updateActiveMenu);
 
 
 /* =====================================
@@ -51,14 +53,17 @@ const projectButton = document.querySelector(".main-button");
 
 if (projectButton) {
 
-    projectButton.addEventListener("click", () => {
+    projectButton.addEventListener("click", event => {
+
+        event.preventDefault();
 
         const projects = document.querySelector("#projetos");
 
         if (projects) {
 
             projects.scrollIntoView({
-                behavior: "smooth"
+                behavior: "smooth",
+                block: "start"
             });
 
         }
@@ -69,7 +74,7 @@ if (projectButton) {
 
 
 /* =====================================
-   PROJETOS EM DESENVOLVIMENTO
+   PROJETOS 2 E 3 - EM BREVE
 ===================================== */
 
 const comingSoonLinks = document.querySelectorAll(".coming-soon");
@@ -97,7 +102,8 @@ if (btnCV) {
 
     btnCV.addEventListener("click", () => {
 
-        // O link do currículo seguirá normalmente.
+        // O navegador abrirá normalmente
+        // o arquivo curriculo.pdf.
 
     });
 
@@ -105,37 +111,51 @@ if (btnCV) {
 
 
 /* =====================================
-   ANIMAÇÃO AO APARECER NA TELA
+   ANIMAÇÃO DOS ELEMENTOS
 ===================================== */
 
 const animatedElements = document.querySelectorAll(
     ".about-text, .skills-card, .project-card, .contact-box"
 );
 
-const observer = new IntersectionObserver(
-    entries => {
+if ("IntersectionObserver" in window) {
 
-        entries.forEach(entry => {
+    const observer = new IntersectionObserver(
+        entries => {
 
-            if (entry.isIntersecting) {
+            entries.forEach(entry => {
 
-                entry.target.classList.add("show");
+                if (entry.isIntersecting) {
 
-            }
+                    entry.target.classList.add("show");
 
-        });
+                    observer.unobserve(entry.target);
 
-    },
-    {
-        threshold: 0.15
-    }
-);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
 
 
-animatedElements.forEach(element => {
+    animatedElements.forEach(element => {
 
-    element.classList.add("hidden");
+        element.classList.add("hidden");
 
-    observer.observe(element);
+        observer.observe(element);
 
-});
+    });
+
+} else {
+
+    animatedElements.forEach(element => {
+
+        element.classList.add("show");
+
+    });
+
+}
