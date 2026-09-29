@@ -13,6 +13,8 @@ CORS(app)
 
 app.secret_key = "chave-secreta-do-projeto"
 
+SSL_CA = os.path.join(os.path.dirname(__file__), "aiven-ca.pem")
+
 DB_CONFIG = {
     "host": os.getenv("DB_HOST"),
     "port": int(os.getenv("DB_PORT", 3306)),
@@ -25,10 +27,14 @@ DB_CONFIG = {
 def criar_banco():
     conexao = mysql.connector.connect(
         host=DB_CONFIG["host"],
+        port=DB_CONFIG["port"],
         user=DB_CONFIG["user"],
         password=DB_CONFIG["password"],
         database=DB_CONFIG["database"],
-        use_pure=True
+        use_pure=True,
+        ssl_ca=SSL_CA,
+        ssl_verify_cert=True,
+        ssl_verify_identity=True
     )
 
     cursor = conexao.cursor()
@@ -61,10 +67,14 @@ def contato():
 
     conexao = mysql.connector.connect(
         host=DB_CONFIG["host"],
+        port=DB_CONFIG["port"],
         user=DB_CONFIG["user"],
         password=DB_CONFIG["password"],
         database=DB_CONFIG["database"],
-        use_pure=True
+        use_pure=True,
+        ssl_ca=SSL_CA,
+        ssl_verify_cert=True,
+        ssl_verify_identity=True
     )
 
     cursor = conexao.cursor()
@@ -109,10 +119,14 @@ def admin():
 
     conexao = mysql.connector.connect(
         host=DB_CONFIG["host"],
+        port=DB_CONFIG["port"],
         user=DB_CONFIG["user"],
         password=DB_CONFIG["password"],
         database=DB_CONFIG["database"],
-        use_pure=True
+        use_pure=True,
+        ssl_ca=SSL_CA,
+        ssl_verify_cert=True,
+        ssl_verify_identity=True
     )
 
     cursor = conexao.cursor()
