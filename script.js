@@ -1,5 +1,4 @@
 const sections = document.querySelectorAll("section");
-
 const navLinks = document.querySelectorAll(".nav a");
 
 function atualizarMenu() {
@@ -46,7 +45,6 @@ const linksEmBreve = document.querySelectorAll(".coming-soon");
 linksEmBreve.forEach(function(link) {
     link.addEventListener("click", function(event) {
         event.preventDefault();
-
         alert("Este projeto estará disponível em breve.");
     });
 });
@@ -78,7 +76,6 @@ if ("IntersectionObserver" in window) {
 }
 
 const formulario = document.getElementById("proposalForm");
-
 const mensagemFormulario = document.getElementById("formMessage");
 
 if (formulario) {
@@ -86,7 +83,6 @@ if (formulario) {
         event.preventDefault();
 
         const contato = document.getElementById("contatoInput").value.trim();
-
         const mensagem = document.getElementById("mensagem").value.trim();
 
         if (contato === "" || mensagem === "") {
@@ -99,13 +95,11 @@ if (formulario) {
         console.log("Enviando dados para o Flask...");
 
         try {
-            const resposta = await fetch("http://127.0.0.1:5000/contato", {
+            const resposta = await fetch("https://portfolio-lays.onrender.com/contato", {
                 method: "POST",
-
                 headers: {
                     "Content-Type": "application/json"
                 },
-
                 body: JSON.stringify({
                     contato: contato,
                     mensagem: mensagem
@@ -125,7 +119,6 @@ if (formulario) {
 
         } catch (erro) {
             console.error(erro);
-
             mensagemFormulario.textContent = "Não foi possível enviar.";
         }
     });
