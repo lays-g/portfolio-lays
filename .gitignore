@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+contatos.db
+.env
+backendmeuportfolio_backup/

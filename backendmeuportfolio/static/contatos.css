@@ -1,0 +1,110 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 40px 20px;
+
+    background-color: #f5eef8;
+
+    font-family: Arial, sans-serif;
+
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+.topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.topo h1 {
+    margin-bottom: 8px;
+
+    color: #673ab7;
+}
+
+.topo p {
+    color: #666;
+}
+
+.sair {
+    padding: 10px 18px;
+
+    background-color: #673ab7;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+}
+
+.sair:hover {
+    background-color: #512da8;
+}
+
+.lista {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.contato-card {
+    position: relative;
+
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.numero {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #673ab7;
+
+    font-weight: bold;
+}
+
+.contato-card h2 {
+    margin-bottom: 12px;
+
+    font-size: 18px;
+}
+
+.contato-card p {
+    line-height: 1.6;
+
+    color: #666;
+}
+
+.vazio {
+    padding: 40px;
+
+    text-align: center;
+
+    background-color: white;
+
+    border-radius: 15px;
+}

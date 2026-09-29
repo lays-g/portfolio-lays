@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contatos | Área Administrativa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='contatos.css') }}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="topo">
+            <div>
+                <h1>Contatos recebidos</h1>
+                <p>Propostas enviadas pelo seu portfólio.</p>
+            </div>
+
+            <a href="/logout" class="sair">Sair</a>
+        </div>
+
+        <section class="lista">
+
+            {% for contato in contatos %}
+
+            <article class="contato-card">
+
+                <span class="numero">
+                    #{{ contato[0] }}
+                </span>
+
+                <h2>
+                    {{ contato[1] }}
+                </h2>
+
+                <p>
+                    {{ contato[2] }}
+                </p>
+
+            </article>
+
+            {% else %}
+
+            <div class="vazio">
+                <p>Nenhum contato recebido ainda.</p>
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
